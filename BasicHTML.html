@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden-section {
+            display: none;
+        }
+        .nav-btn-active {
+            background-color: #d6d3d1;
+            font-weight: 600;
+            color: #1c1917;
+            border-left: 4px solid #ea580c;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fafaf9;
+            color: #292524;
+        }
+        /* Custom scrollbar for inner containers */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78716c; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <nav class="w-full md:w-64 bg-stone-200 h-auto md:h-full flex flex-col shadow-lg z-20 flex-shrink-0">
+        <div class="p-6 bg-stone-300">
+            <h1 class="text-2xl font-bold text-stone-800 tracking-tight">&#127970; YMCA Vietnam</h1>
+            <p class="text-sm text-stone-600 mt-1 uppercase tracking-wider font-semibold">Basic HTML</p>
+        </div>
+        <div class="flex-1 overflow-y-auto py-4 flex flex-col gap-2 px-2">
+            <button class="nav-btn nav-btn-active w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-intro">
+                &#128214; 1. What is HTML?
+            </button>
+            <button class="nav-btn w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-setup">
+                &#128187; 2. Workspace Setup
+            </button>
+            <button class="nav-btn w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-elements">
+                &#128221; 3. Core Elements
+            </button>
+            <button class="nav-btn w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-inputs">
+                &#9745; 4. Interactive Inputs
+            </button>
+            <button class="nav-btn w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-tags">
+                &#128270; 5. Tag Types
+            </button>
+            <button class="nav-btn w-full text-left px-4 py-3 rounded text-stone-700 hover:bg-stone-300 transition-colors" data-target="sec-iframe">
+                &#128506; 6. Extra: Maps
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 relative">
+        
+        <!-- SECTION 1: Introduction -->
+        <section id="sec-intro" class="max-w-5xl mx-auto block">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">What is HTML?</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    Welcome to the first step in web development. This section introduces the core purpose of Hypertext Markup Language. You will explore how HTML provides the foundation of a webpage, just like the structural framing of a house. By the end of this module, you will understand how HTML interacts with CSS and JavaScript to create a complete web experience.
+                </p>
+            </header>
+
+            <div class="mb-8">
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">&#127968; The Web Design House Analogy</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex flex-col items-center text-center bg-orange-50 p-4 rounded-lg border-t-4 border-orange-500">
+                            <span class="text-4xl mb-3">&#129521;</span>
+                            <strong class="text-stone-900 block mb-2">1. HTML (Foundation)</strong>
+                            <span class="text-stone-600 text-sm">Provides the essential layout and contents (texts, media, inputs). It is the bricks and mortar of the page.</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center bg-blue-50 p-4 rounded-lg border-t-4 border-blue-500">
+                            <span class="text-4xl mb-3">&#127912;</span>
+                            <strong class="text-stone-900 block mb-2">2. CSS (Design)</strong>
+                            <span class="text-stone-600 text-sm">The styling layer. Think of it as the wall paint, wallpapers, and flooring that make the structure beautiful.</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center bg-yellow-50 p-4 rounded-lg border-t-4 border-yellow-500">
+                            <span class="text-4xl mb-3">&#128161;</span>
+                            <strong class="text-stone-900 block mb-2">3. JavaScript (Behavior)</strong>
+                            <span class="text-stone-600 text-sm">The functional layer. It is like placing smart furniture and working appliances inside the house.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-stone-800 text-stone-100 rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-orange-400 mb-3">&#9881; Anatomy of an HTML Element</h3>
+                <p class="mb-4 text-stone-300">An HTML element is defined by a start tag, some content, and an end tag. Tags normally come in pairs.</p>
+                <div class="bg-stone-900 p-4 rounded font-mono text-center text-lg md:text-xl border border-stone-700 shadow-inner">
+                    <span class="text-pink-400">&lt;tagname&gt;</span>
+                    <span class="text-white">Element content</span>
+                    <span class="text-pink-400">&lt;/tagname&gt;</span>
+                </div>
+                <div class="mt-4 text-sm text-stone-400">
+                    <strong>Note:</strong> Self-closed tags like &lt;br&gt; and &lt;img&gt; do not need to be closed by a separate end tag.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Setup -->
+        <section id="sec-setup" class="max-w-5xl mx-auto hidden-section">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">Workspace Setup</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    Before writing code, you need the right tools. This section guides you through installing Visual Studio Code (VSCode), creating your first HTML file, and organizing your project directory. Follow the interactive timeline below to set up your environment properly.
+                </p>
+            </header>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex flex-col md:flex-row justify-between mb-8 gap-4" id="setup-steps-container">
+                </div>
+                
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-200 min-h-[250px] flex flex-col justify-center items-center text-center" id="setup-detail-panel">
+                    <span class="text-5xl mb-4">&#128269;</span>
+                    <h4 class="text-xl font-bold text-stone-800 mb-2">Select a step above</h4>
+                    <p class="text-stone-600">Click on the timeline steps to view the installation procedure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Core Elements -->
+        <section id="sec-elements" class="max-w-5xl mx-auto hidden-section">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">Adding Texts, Tables & Media</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    This is the core of HTML content creation. Here you will learn how to structure text using headings and paragraphs, organize data with lists and tables, and enrich your webpage with interactive links, images, and embedded videos.
+                </p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Dropdown Menu Area -->
+                <div class="lg:col-span-1 relative">
+                    <button id="tag-dropdown-btn" class="w-full bg-white border border-stone-300 text-stone-800 font-bold px-4 py-3 rounded-xl shadow-sm flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>Tag Categories</span>
+                        <span class="text-xs">&#9660;</span>
+                    </button>
+                    
+                    <div id="tag-list-container" class="absolute left-0 right-0 mt-2 bg-white border border-stone-200 rounded-xl shadow-lg z-10 hidden flex-col max-h-[400px] overflow-y-auto">
+                        <div id="tag-list" class="p-2 flex flex-col gap-1">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code & Preview Area -->
+                <div class="lg:col-span-2 flex flex-col gap-6">
+                    <div class="bg-stone-800 rounded-xl shadow-sm overflow-hidden flex flex-col">
+                        <div class="px-4 py-2 bg-stone-900 flex items-center justify-between border-b border-stone-700">
+                            <span class="text-stone-300 font-mono text-sm">Code Preview</span>
+                            <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <!-- Description -->
+                            <p id="tag-description" class="text-stone-300 text-sm mb-4 border-b border-stone-600 pb-3 italic">
+                                Select a tag from the list to view its description and code...
+                            </p>
+                            
+                            <!-- Color-coded Code view -->
+                            <div id="tag-code-view" class="font-mono text-sm whitespace-pre-wrap overflow-x-auto min-h-[100px] mb-4 text-white">
+                                <!-- Code injected here -->
+                            </div>
+
+                            <!-- Legend -->
+                            <div class="flex flex-wrap gap-4 text-xs mt-4 pt-3 border-t border-stone-700 text-stone-400">
+                                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-pink-400"></span> Tên thẻ (Tag Name)</span>
+                                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-blue-300"></span> Thuộc tính (Attribute)</span>
+                                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-green-300"></span> Giá trị (Value)</span>
+                                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-white border border-stone-500"></span> Nội dung (Content)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden flex flex-col">
+                        <div class="px-4 py-2 bg-stone-100 border-b border-stone-200">
+                            <span class="text-stone-600 font-semibold text-sm uppercase tracking-wider">Browser Render Output</span>
+                        </div>
+                        <div class="p-6 min-h-[200px] overflow-auto" id="tag-render-view">
+                            <p class="text-stone-400 italic text-center mt-10">Output will render here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Interactive Inputs -->
+        <section id="sec-inputs" class="max-w-5xl mx-auto hidden-section">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">Adding Inputs</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    Webpages become interactive applications through user inputs. This section demonstrates the standard HTML form elements: buttons, text fields, checkboxes, and radio buttons.
+                </p>
+            </header>
+
+            <!-- Code Preview Block BEFORE Interactive Form -->
+            <div class="bg-stone-900 rounded-xl shadow-md border border-stone-700 overflow-hidden mb-8">
+                <div class="px-4 py-2 bg-stone-950 flex items-center gap-2 border-b border-stone-800">
+                    <span class="text-stone-400 font-mono text-xs">forms.html</span>
+                </div>
+                <div class="p-5 font-mono text-sm whitespace-pre-wrap overflow-x-auto text-white leading-relaxed">
+<span class="text-stone-500">&lt;!-- 1. Text Field --&gt;</span>
+<span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"text"</span> <span class="text-blue-300">placeholder=</span><span class="text-green-300">"Type something here..."</span><span class="text-pink-400">&gt;</span>
+
+<span class="text-stone-500">&lt;!-- 2. Checkbox --&gt;</span>
+<span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"checkbox"</span><span class="text-pink-400">&gt;</span> <span class="text-white">I confirm that I am learning HTML</span>
+
+<span class="text-stone-500">&lt;!-- 3. Radio Buttons --&gt;</span>
+<span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"radio"</span> <span class="text-blue-300">name=</span><span class="text-green-300">"demo"</span> <span class="text-blue-300">value=</span><span class="text-green-300">"HTML"</span><span class="text-pink-400">&gt;</span> <span class="text-white">HTML is my favorite</span>
+<span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"radio"</span> <span class="text-blue-300">name=</span><span class="text-green-300">"demo"</span> <span class="text-blue-300">value=</span><span class="text-green-300">"CSS"</span><span class="text-pink-400">&gt;</span> <span class="text-white">CSS is my favorite</span>
+
+<span class="text-stone-500">&lt;!-- 4. Button --&gt;</span>
+<span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"button"</span> <span class="text-blue-300">value=</span><span class="text-green-300">"Click me"</span><span class="text-pink-400">&gt;</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 border-b pb-2">&#128222; Interactive Form Elements</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-stone-600 mb-1">1. Text Field</label>
+                            <input type="text" id="demo-text" class="w-full border border-stone-300 rounded px-3 py-2 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500" placeholder="Type something here...">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-stone-600 mb-2">2. Checkbox</label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" id="demo-check" class="w-5 h-5 accent-orange-500">
+                                <span class="text-stone-700">I confirm that I am learning HTML</span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-stone-600 mb-2">3. Radio Buttons</label>
+                            <div class="flex flex-col space-y-2">
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="demo-radio" value="HTML" class="w-5 h-5 accent-orange-500">
+                                    <span class="text-stone-700">HTML is my favorite</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="demo-radio" value="CSS" class="w-5 h-5 accent-orange-500">
+                                    <span class="text-stone-700">CSS is my favorite</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <label class="block text-sm font-semibold text-stone-600 mb-1">4. Button</label>
+                            <input type="button" id="demo-btn" value="Click me to trigger an action" class="bg-stone-800 text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors cursor-pointer font-semibold shadow-md">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-stone-100 p-6 rounded-xl border border-stone-200 flex flex-col">
+                    <h3 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-300 pb-2">&#128202; Live Input State Monitor</h3>
+                    <div class="flex-1 bg-white rounded shadow-inner p-4 font-mono text-sm text-stone-700">
+                        <p class="text-stone-400 mb-4">Interact with the form to see state changes:</p>
+                        
+                        <div class="grid grid-cols-3 gap-2 mb-3 border-b border-stone-100 pb-2">
+                            <span class="font-bold">Text Input:</span>
+                            <span class="col-span-2 text-blue-600" id="state-text">Empty</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-2 mb-3 border-b border-stone-100 pb-2">
+                            <span class="font-bold">Checkbox:</span>
+                            <span class="col-span-2 text-red-600" id="state-check">Unchecked</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-2 mb-3 border-b border-stone-100 pb-2">
+                            <span class="font-bold">Radio Choice:</span>
+                            <span class="col-span-2 text-purple-600" id="state-radio">None selected</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-2">
+                            <span class="font-bold">Button Clicks:</span>
+                            <span class="col-span-2 text-orange-600 font-bold text-lg" id="state-btn">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Phân loại thẻ (New) -->
+        <section id="sec-tags" class="max-w-5xl mx-auto hidden-section">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">Phân loại thẻ HTML</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    Trong HTML, các thẻ được chia làm hai loại chính: Thẻ thường (Normal Tags) yêu cầu thẻ đóng và Thẻ tự đóng (Self-closing Tags) hoạt động độc lập. Việc nắm rõ điều này giúp bạn tránh các lỗi cấu trúc phổ biến.
+                </p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Normal Tags -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-2xl">&#128218;</span>
+                        <h3 class="font-bold text-xl text-stone-800">Normal Tags (Thẻ đóng/mở)</h3>
+                    </div>
+                    <p class="text-stone-600 mb-6">Là những thẻ dùng để <strong>bao bọc nội dung</strong> bên trong (như văn bản, hoặc các thẻ khác). Chúng bắt buộc phải có <span class="bg-stone-100 px-1 rounded text-pink-500 font-mono text-sm">&lt;tag&gt;</span> và kết thúc bằng <span class="bg-stone-100 px-1 rounded text-pink-500 font-mono text-sm">&lt;/tag&gt;</span>.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-pink-400">&lt;h1&gt;</span><span class="text-white">Đây là Tiêu đề</span><span class="text-pink-400">&lt;/h1&gt;</span>
+                        </div>
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-pink-400">&lt;p&gt;</span><span class="text-white">Đây là một đoạn văn bản.</span><span class="text-pink-400">&lt;/p&gt;</span>
+                        </div>
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-pink-400">&lt;div&gt;</span><br>
+                            &nbsp;&nbsp;<span class="text-pink-400">&lt;span&gt;</span><span class="text-white">Chứa thẻ khác bên trong</span><span class="text-pink-400">&lt;/span&gt;</span><br>
+                            <span class="text-pink-400">&lt;/div&gt;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Self-closing Tags -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-2xl">&#9889;</span>
+                        <h3 class="font-bold text-xl text-stone-800">Self-closing Tags (Thẻ tự đóng)</h3>
+                    </div>
+                    <p class="text-stone-600 mb-6">Là những thẻ <strong>không chứa nội dung văn bản</strong> bên trong. Chúng thực hiện một chức năng cụ thể ngay lập tức (như chèn ảnh, ngắt dòng, tạo ô nhập liệu).</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-stone-500">&lt;!-- Ngắt dòng --&gt;</span><br>
+                            <span class="text-white">Dòng 1</span> <span class="text-pink-400">&lt;br&gt;</span> <span class="text-white">Dòng 2</span>
+                        </div>
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-stone-500">&lt;!-- Chèn hình ảnh --&gt;</span><br>
+                            <span class="text-pink-400">&lt;img</span> <span class="text-blue-300">src=</span><span class="text-green-300">"image.jpg"</span> <span class="text-blue-300">alt=</span><span class="text-green-300">"Ảnh"</span><span class="text-pink-400">&gt;</span>
+                        </div>
+                        <div class="bg-stone-900 p-4 rounded font-mono text-sm shadow-inner">
+                            <span class="text-stone-500">&lt;!-- Ô nhập liệu --&gt;</span><br>
+                            <span class="text-pink-400">&lt;input</span> <span class="text-blue-300">type=</span><span class="text-green-300">"text"</span><span class="text-pink-400">&gt;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Iframe (New) -->
+        <section id="sec-iframe" class="max-w-5xl mx-auto hidden-section">
+            <header class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-4">Kiến thức ngoài lề: Nhúng Google Maps</h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    Bạn có thể hiển thị nội dung từ một trang web khác bên trong trang web của mình bằng cách sử dụng thẻ <span class="bg-stone-100 px-2 py-1 rounded text-pink-500 font-mono text-sm border border-stone-200">&lt;iframe&gt;</span>. Một trong những ứng dụng phổ biến nhất là nhúng Google Maps.
+                </p>
+            </header>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">Cách nhúng Bản đồ bằng Iframe</h3>
+                
+                <div class="bg-stone-900 p-4 rounded-lg font-mono text-sm mb-6 overflow-x-auto shadow-inner whitespace-nowrap">
+                    <span class="text-pink-400">&lt;iframe</span><br>
+                    &nbsp;&nbsp;<span class="text-blue-300">src=</span><span class="text-green-300">"https://www.google.com/maps/embed?pb=..."</span><br>
+                    &nbsp;&nbsp;<span class="text-blue-300">width=</span><span class="text-green-300">"100%"</span> <span class="text-blue-300">height=</span><span class="text-green-300">"350"</span><br>
+                    &nbsp;&nbsp;<span class="text-blue-300">style=</span><span class="text-green-300">"border:0;"</span> <span class="text-blue-300">allowfullscreen=</span><span class="text-green-300">""</span> <span class="text-blue-300">loading=</span><span class="text-green-300">"lazy"</span><span class="text-pink-400">&gt;</span><br>
+                    <span class="text-pink-400">&lt;/iframe&gt;</span>
+                </div>
+
+                <div class="w-full h-[350px] bg-stone-100 rounded-lg overflow-hidden border border-stone-300">
+                    <!-- Google Maps Iframe Embed Example -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424167419722!2d106.687834314749!3d10.778817292319985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f30737d2ce7%3A0x6ce67634f107f918!2sWar%20Remnants%20Museum!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <p class="text-sm text-stone-500 mt-4 italic">
+                    *Mẹo: Truy cập Google Maps, tìm địa điểm của bạn, chọn nút "Share" (Chia sẻ) -> "Embed a map" (Nhúng bản đồ) và sao chép mã HTML để dán vào website.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const uiState = {
+            btnClicks: 0
+        };
+
+        const setupSteps = [
+            { id: 1, title: 'Download', icon: '&#128229;', text: 'Go to Google, search for "VSCode" and click download from visualstudio.com.' },
+            { id: 2, title: 'Install', icon: '&#9881;', text: 'Click the 64-bit User Installer for Windows. Accept the agreement and proceed with installation.' },
+            { id: 3, title: 'Configure', icon: '&#128421;', text: 'Tick the "Create a desktop icon" checkbox during setup, then click Install and Finish.' },
+            { id: 4, title: 'First File', icon: '&#128196;', text: 'Open VSCode, click File > New File. Select "HTML" as your language.' },
+            { id: 5, title: 'Save Project', icon: '&#128190;', text: 'Press Ctrl+S, create a folder named "ConnectTech Project", and save as "My First HTML.html".' }
+        ];
+
+        // Updated Data Structure with Color Coded HTML Spans & Descriptions
+        const htmlElements = [
+            {
+                name: 'Document Structure',
+                category: 'Foundation',
+                description: 'Cấu trúc xương sống cơ bản nhất của một file HTML. Tất cả nội dung trang web được viết bên trong thẻ <body>.',
+                code: '<span class="text-pink-400">&lt;html&gt;</span>\n  <span class="text-pink-400">&lt;head&gt;</span>\n    <span class="text-pink-400">&lt;title&gt;</span><span class="text-white">My First HTML</span><span class="text-pink-400">&lt;/title&gt;</span>\n  <span class="text-pink-400">&lt;/head&gt;</span>\n  <span class="text-pink-400">&lt;body&gt;</span>\n    <span class="text-pink-400">&lt;p&gt;</span><span class="text-white">Main content goes here.</span><span class="text-pink-400">&lt;/p&gt;</span>\n  <span class="text-pink-400">&lt;/body&gt;</span>\n<span class="text-pink-400">&lt;/html&gt;</span>',
+                render: '<div class="border-2 border-dashed border-stone-300 p-4 text-center text-stone-500">The invisible scaffolding of the page. Visible content resides in the body tag.</div>'
+            },
+            {
+                name: 'Headings (h1-h6)',
+                category: 'Text',
+                description: 'Thứ tự các heading đi từ h1 (Lớn nhất, quan trọng nhất cho SEO) đến h6 (Nhỏ nhất). Mỗi trang thường chỉ nên có một thẻ h1 đại diện cho tiêu đề chính.',
+                code: '<span class="text-pink-400">&lt;h1&gt;</span><span class="text-white">Welcome!</span><span class="text-pink-400">&lt;/h1&gt;</span>\n<span class="text-pink-400">&lt;h2&gt;</span><span class="text-white">Header 2</span><span class="text-pink-400">&lt;/h2&gt;</span>\n<span class="text-pink-400">&lt;h3&gt;</span><span class="text-white">Header 3</span><span class="text-pink-400">&lt;/h3&gt;</span>',
+                render: '<h1 class="text-3xl font-bold mb-2">Welcome!</h1><h2 class="text-2xl font-bold mb-2">Header 2</h2><h3 class="text-xl font-bold">Header 3</h3>'
+            },
+            {
+                name: 'Paragraph (p)',
+                category: 'Text',
+                description: 'Thẻ <p> (Paragraph) dùng để tạo các đoạn văn bản. Mỗi thẻ <p> sẽ tự động bắt đầu ở một dòng mới.',
+                code: '<span class="text-pink-400">&lt;p&gt;</span><span class="text-white">This webpage is my first HTML.</span><span class="text-pink-400">&lt;/p&gt;</span>\n<span class="text-pink-400">&lt;p&gt;</span><span class="text-white">I hope you enjoy.</span><span class="text-pink-400">&lt;/p&gt;</span>',
+                render: '<p class="mb-4">This webpage is my first HTML.</p><p>I hope you enjoy.</p>'
+            },
+            {
+                name: 'Unordered List (ul)',
+                category: 'Lists',
+                description: 'Danh sách không có thứ tự (sử dụng dấu chấm tròn). Thẻ <ul> bao bọc bên ngoài, các mục danh sách dùng thẻ <li> bên trong.',
+                code: '<span class="text-pink-400">&lt;p&gt;</span><span class="text-white">My favorite things:</span><span class="text-pink-400">&lt;/p&gt;</span>\n<span class="text-pink-400">&lt;ul&gt;</span>\n  <span class="text-pink-400">&lt;li&gt;</span><span class="text-white">Coffee</span><span class="text-pink-400">&lt;/li&gt;</span>\n  <span class="text-pink-400">&lt;li&gt;</span><span class="text-white">Tea</span><span class="text-pink-400">&lt;/li&gt;</span>\n<span class="text-pink-400">&lt;/ul&gt;</span>',
+                render: '<p class="mb-2">My favorite things:</p><ul class="list-disc pl-6 mb-4"><li>Coffee</li><li>Tea</li></ul>'
+            },
+            {
+                name: 'Ordered List (ol)',
+                category: 'Lists',
+                description: 'Danh sách có thứ tự (được đánh số tự động 1, 2, 3...). Thẻ <ol> bao bọc bên ngoài.',
+                code: '<span class="text-pink-400">&lt;ol&gt;</span>\n  <span class="text-pink-400">&lt;li&gt;</span><span class="text-white">Coffee</span><span class="text-pink-400">&lt;/li&gt;</span>\n  <span class="text-pink-400">&lt;li&gt;</span><span class="text-white">Rice</span><span class="text-pink-400">&lt;/li&gt;</span>\n<span class="text-pink-400">&lt;/ol&gt;</span>',
+                render: '<ol class="list-decimal pl-6 mb-4"><li>Coffee</li><li>Rice</li></ol>'
+            },
+            {
+                name: 'Table',
+                category: 'Tables',
+                description: 'Tạo bảng biểu. Gồm: <table> (bọc toàn bộ bảng), <tr> (tạo hàng - table row), <th> (tiêu đề cột), <td> (ô dữ liệu).',
+                code: '<span class="text-pink-400">&lt;table&gt;</span>\n  <span class="text-pink-400">&lt;tr&gt;</span>\n    <span class="text-pink-400">&lt;th&gt;</span><span class="text-white">Person</span><span class="text-pink-400">&lt;/th&gt;</span>\n    <span class="text-pink-400">&lt;th&gt;</span><span class="text-white">Age</span><span class="text-pink-400">&lt;/th&gt;</span>\n  <span class="text-pink-400">&lt;/tr&gt;</span>\n  <span class="text-pink-400">&lt;tr&gt;</span>\n    <span class="text-pink-400">&lt;td&gt;</span><span class="text-white">Emil</span><span class="text-pink-400">&lt;/td&gt;</span>\n    <span class="text-pink-400">&lt;td&gt;</span><span class="text-white">16</span><span class="text-pink-400">&lt;/td&gt;</span>\n  <span class="text-pink-400">&lt;/tr&gt;</span>\n<span class="text-pink-400">&lt;/table&gt;</span>',
+                render: '<table class="w-full border-collapse border border-stone-300"><tr class="bg-stone-200"><th class="border border-stone-300 p-2">Person</th><th class="border border-stone-300 p-2">Age</th></tr><tr><td class="border border-stone-300 p-2 text-center">Emil</td><td class="border border-stone-300 p-2 text-center">16</td></tr></table>'
+            },
+            {
+                name: 'Hyperlink (a)',
+                category: 'Links',
+                description: 'Thẻ <a> tạo liên kết (link) chuyển hướng người dùng. Bắt buộc có thuộc tính "href" để chỉ định đích đến.',
+                code: '<span class="text-pink-400">&lt;a</span> <span class="text-blue-300">href=</span><span class="text-green-300">"https://ymcavn.org"</span><span class="text-pink-400">&gt;</span><span class="text-white">Trang chủ YMCA</span><span class="text-pink-400">&lt;/a&gt;</span>',
+                render: '<a href="#" class="text-blue-600 underline hover:text-blue-800" onclick="event.preventDefault(); alert(\'Link interaction prevented in demo.\');">Trang chủ YMCA</a>'
+            },
+            {
+                name: 'Image (img)',
+                category: 'Media',
+                description: 'Thẻ <img> (thuộc nhóm thẻ tự đóng) dùng để hiển thị hình ảnh. Cần thuộc tính "src" (đường dẫn ảnh) và "alt" (văn bản thay thế khi lỗi ảnh).',
+                code: '<span class="text-pink-400">&lt;img</span> <span class="text-blue-300">src=</span><span class="text-green-300">"image.jpg"</span> <span class="text-blue-300">alt=</span><span class="text-green-300">"YMCA Logo"</span><span class="text-pink-400">&gt;</span>',
+                render: '<img src="https://via.placeholder.com/300x100?text=YMCA+Vietnam" alt="YMCA Header" class="rounded shadow-sm max-w-full">'
+            }
+        ];
+
+        function initNav() {
+            const btns = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('main > section');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    btns.forEach(b => b.classList.remove('nav-btn-active'));
+                    e.currentTarget.classList.add('nav-btn-active');
+                    
+                    const targetId = e.currentTarget.getAttribute('data-target');
+                    sections.forEach(sec => {
+                        if (sec.id === targetId) {
+                            sec.classList.remove('hidden-section');
+                        } else {
+                            sec.classList.add('hidden-section');
+                        }
+                    });
+                });
+            });
+        }
+
+        function initSetupSteps() {
+            const container = document.getElementById('setup-steps-container');
+            const detailPanel = document.getElementById('setup-detail-panel');
+
+            setupSteps.forEach(step => {
+                const btn = document.createElement('button');
+                btn.className = 'flex-1 py-3 px-2 bg-stone-100 hover:bg-orange-100 text-stone-700 font-semibold rounded border border-stone-200 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500';
+                btn.innerHTML = `<span class="block text-2xl mb-1">${step.icon}</span> <span class="text-sm">Step ${step.id}</span>`;
+                
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#setup-steps-container button').forEach(b => {
+                        b.classList.remove('bg-orange-500', 'text-white');
+                        b.classList.add('bg-stone-100', 'text-stone-700');
+                    });
+                    btn.classList.remove('bg-stone-100', 'text-stone-700');
+                    btn.classList.add('bg-orange-500', 'text-white');
+
+                    detailPanel.innerHTML = `
+                        <span class="text-6xl mb-4 block">${step.icon}</span>
+                        <h4 class="text-2xl font-bold text-stone-800 mb-4">Step ${step.id}: ${step.title}</h4>
+                        <p class="text-lg text-stone-700 max-w-md mx-auto bg-white p-4 rounded shadow-sm border border-stone-200">${step.text}</p>
+                    `;
+                });
+                
+                container.appendChild(btn);
+            });
+        }
+
+        function initElementsDropdown() {
+            const dropdownBtn = document.getElementById('tag-dropdown-btn');
+            const listContainerOuter = document.getElementById('tag-list-container');
+            const listContainer = document.getElementById('tag-list');
+            
+            const codeView = document.getElementById('tag-code-view');
+            const renderView = document.getElementById('tag-render-view');
+            const descView = document.getElementById('tag-description');
+
+            // Toggle Dropdown
+            dropdownBtn.addEventListener('click', () => {
+                listContainerOuter.classList.toggle('hidden');
+                listContainerOuter.classList.toggle('flex');
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', (e) => {
+                if (!dropdownBtn.contains(e.target) && !listContainerOuter.contains(e.target)) {
+                    listContainerOuter.classList.add('hidden');
+                    listContainerOuter.classList.remove('flex');
+                }
+            });
+
+            let currentCategory = '';
+
+            htmlElements.forEach((el, index) => {
+                // Category Header logic
+                if (el.category !== currentCategory) {
+                    const catHeader = document.createElement('div');
+                    catHeader.className = 'text-xs font-bold text-stone-400 uppercase tracking-wider mt-2 mb-1 px-3';
+                    catHeader.textContent = el.category;
+                    listContainer.appendChild(catHeader);
+                    currentCategory = el.category;
+                }
+
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left px-4 py-2 rounded text-stone-700 hover:bg-orange-100 focus:bg-orange-200 transition-colors text-sm border border-transparent focus:border-orange-300 mb-1';
+                btn.textContent = el.name;
+                
+                btn.addEventListener('click', () => {
+                    // Update Active Style
+                    document.querySelectorAll('#tag-list button').forEach(b => {
+                        b.classList.remove('bg-orange-200', 'border-orange-300', 'font-bold');
+                    });
+                    btn.classList.add('bg-orange-200', 'border-orange-300', 'font-bold');
+                    
+                    // Update Content
+                    descView.textContent = el.description;
+                    codeView.innerHTML = el.code; // use innerHTML for color spans
+                    renderView.innerHTML = el.render;
+                    dropdownBtn.querySelector('span:first-child').textContent = el.name;
+
+                    // Close Dropdown after selection
+                    listContainerOuter.classList.add('hidden');
+                    listContainerOuter.classList.remove('flex');
+                });
+                
+                listContainer.appendChild(btn);
+                
+                // Default initial load
+                if (index === 0) {
+                    setTimeout(() => btn.click(), 100);
+                }
+            });
+        }
+
+        function initInputsDemo() {
+            const textInput = document.getElementById('demo-text');
+            const checkInput = document.getElementById('demo-check');
+            const radioInputs = document.querySelectorAll('input[name="demo-radio"]');
+            const btnInput = document.getElementById('demo-btn');
+
+            const stateText = document.getElementById('state-text');
+            const stateCheck = document.getElementById('state-check');
+            const stateRadio = document.getElementById('state-radio');
+            const stateBtn = document.getElementById('state-btn');
+
+            textInput.addEventListener('input', (e) => {
+                stateText.textContent = e.target.value || 'Empty';
+                stateText.className = e.target.value ? 'col-span-2 text-green-600 font-bold' : 'col-span-2 text-blue-600';
+            });
+
+            checkInput.addEventListener('change', (e) => {
+                stateCheck.textContent = e.target.checked ? 'Checked' : 'Unchecked';
+                stateCheck.className = e.target.checked ? 'col-span-2 text-green-600 font-bold' : 'col-span-2 text-red-600';
+            });
+
+            radioInputs.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        stateRadio.textContent = e.target.value;
+                        stateRadio.className = 'col-span-2 text-green-600 font-bold';
+                    }
+                });
+            });
+
+            btnInput.addEventListener('click', () => {
+                uiState.btnClicks++;
+                stateBtn.textContent = uiState.btnClicks;
+                
+                stateBtn.classList.add('scale-150', 'text-red-500');
+                setTimeout(() => {
+                    stateBtn.classList.remove('scale-150', 'text-red-500');
+                }, 200);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initNav();
+            initSetupSteps();
+            initElementsDropdown();
+            initInputsDemo();
+        });
+    </script>
+</body>
+</html>
